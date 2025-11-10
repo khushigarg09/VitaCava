@@ -32,3 +32,7 @@ ENV/
 # Environment files - keep secrets out of repo
 .env
 .env.*
+backend/.venv.zip
+backend/models/food_pref_artifact.pkl
+*.pkl
+*.zip
