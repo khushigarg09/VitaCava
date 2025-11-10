@@ -248,7 +248,6 @@ def parse_whatsapp_bytes(name: str, content: bytes):
 @app.get("/")
 def root(): return {"ok": True, "service": "VitaCava API"}
 
-
 @app.post("/health/predict")
 def health_predict(x: HealthInput):
     if health_model is None:
@@ -256,9 +255,14 @@ def health_predict(x: HealthInput):
     df = pd.DataFrame([x.dict()])
     model = health_model.get("model", health_model)
     y = model.predict(df)
-    proba = health_model.predict_proba(df)[0].tolist() if hasattr(
-        health_model, "predict_proba") else None
-    return {"prediction": float(y[0]) if len(y) else None, "proba": proba}
+    label = "Active" if int(y[0]) == 1 else "Lazy"
+    proba = (
+        health_model.predict_proba(df)[0].tolist()
+        if hasattr(health_model, "predict_proba")
+        else None
+    )
+    return {"prediction": label, "proba": proba}
+
 
 
 @app.post("/entertainment/recommend")

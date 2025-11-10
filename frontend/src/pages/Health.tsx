@@ -27,11 +27,11 @@ export default function Health() {
 
     try {
       // ✅ Match backend model's expected feature names
-      const payload = {
-        Calories: parseFloat(formData.calories),
-        TotalSteps: parseFloat(formData.steps),
-        TotalDistance: parseFloat(formData.distance),
-        VeryActiveMinutes: parseFloat(formData.active_minutes),
+    const payload = {
+    steps: parseFloat(formData.steps),
+    calories: parseFloat(formData.calories),
+    distance: parseFloat(formData.distance),
+    active_minutes: parseFloat(formData.active_minutes),
 };
 
 
